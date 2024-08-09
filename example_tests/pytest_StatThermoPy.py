@@ -19,7 +19,7 @@ def test_psi4_thermodynamics(tmpdir):
 
         Make sure that the reported differences are small.
 
-        Test calculation: nonane mp2/avdz conf 9
+        Test calculation: nonane mp2/avdz conf 9 - OB_Conformer-nonane-9-psi-f.log
     """
 
     EElec = 0.0
@@ -111,7 +111,7 @@ def test_psi_thermodynamics_2(tmpdir):
 
         Make sure that the reported differences are small.
 
-        Test calculation: ethanol hf/6-31G(d)
+        Test calculation: ethanol hf/6-31G(d) - ethanol-psi-f.log
     """
 
     EElec = 0.0
@@ -160,7 +160,7 @@ def test_gammes_thermodynamics(tmpdir):
     """Test to reproduce GAMESS's thermodynamics.
         Make sure that the reported differences are small.
 
-        Test calculation: ethanol hf/6-31G(d)
+        Test calculation: ethanol hf/6-31G(d) - ethanol-gam-f.log
 
         Rot. Const.
         v(cm-1) = ((v(GHz)*1E9)/speed-of-light)/100
@@ -212,3 +212,4 @@ def test_gammes_thermodynamics(tmpdir):
               [None, None, None, None]]
 
     assert output == target
+    
