@@ -1,5 +1,8 @@
 # StatThermoPy
-A python script for computing statatistical thermodynamic observables. The main function within this script
+
+## Author: Karl N. Kirschner
+
+A Python script for computing statistical thermodynamic observables. The main function within this script
 is called `compute_thermo`, which is detailed below.
 
     def compute_thermo(elements: list, sym_num: int, T: float, P: float, rotational_const: list,
@@ -7,7 +10,7 @@ is called `compute_thermo`, which is detailed below.
     ''' Compute all thermodynamics - a master function.
 
         Args
-            elements:         elements in molecule
+            elements:         elements in a molecule
             sym_num:          symmetry number
             T:                temperature (K)
             P:                pressure (Pa)
@@ -15,14 +18,14 @@ is called `compute_thermo`, which is detailed below.
             vibrations:       vibrational frequencies (cm-1)
             scale_low_vib:    scaling factor for low vibrations
             scale_high_vib:   scaling factor for high vibrations
-            energy_elec:      electron energy at the bottom of an energy well (hartree)
+            energy_elec:      electron energy at the bottom of an energy well (Hartree)
 
         Return
-            Ezpve: electronic energy corrected with zero-point vibrational energy (hartree)
-            U: thermal energy (hartree)
-            H: enthalpy (hartree)
-            G: free energy (hartree)
-            Cv: Constant volume heat capacity (hartree)
+            Ezpve: electronic energy corrected with zero-point vibrational energy (Hartree)
+            U: thermal energy (Hartree)
+            H: enthalpy (Hartree)
+            G: free energy (Hartree)
+            Cv: Constant volume heat capacity (Hartree)
     '''
 
     mass_dict = {'H': 1.00782503223, 'C': 12.000, 'O': 15.994914619257,
