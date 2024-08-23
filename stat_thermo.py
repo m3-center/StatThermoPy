@@ -217,6 +217,7 @@ def vibrational_contribution(temperature: float, vibrations: list, scaling_facto
         for freq in VibTemp_list:
             # SVib = (kb*na)*((freq/temperature)/(math.exp(freq/temperature)-1)-math.log(1-math.exp(-freq/temperature)))/kcal2J
             SVib = (kb*na)*((freq/temperature)/(math.exp(freq/temperature)-1)-math.log(1-math.exp(-freq/temperature)))/hartree2J/na
+
             SVib_all.append(SVib)
 
         Svib_sum = math.fsum(SVib_all)
@@ -346,6 +347,7 @@ def correction_energy_H(temperature: float, Ucorr: float) -> float:
     else:
         # Hcorr = Ucorr + (na*kb)*temperature/kcal2J  # kcal/mol
         Hcorr = Ucorr + (na*kb)*temperature/hartree2J/na
+
         return Hcorr
 
 
@@ -414,7 +416,8 @@ def final_thermo_energies(Eelec: float, ZPVE: float, Ucorr: float, Hcorr: float,
 
 
 def compute_thermo(elements: list, sym_num: int, T: float, P: float, rotational_const: list,
-                   vibrations: list, scale_low_vib: float, scale_high_vib: float, energy_elec: float):
+                   vibrations: list, scale_low_vib: float, scale_high_vib: float,
+                   cutoff: float, energy_elec: float):
     ''' Compute all thermodynamics - a master function.
 
         Args
@@ -456,7 +459,7 @@ def compute_thermo(elements: list, sym_num: int, T: float, P: float, rotational_
     ## Vibration scaling
     scale = []
     for v in vibrations:
-        if v <= 1000:
+        if v <= cutoff:
             scale.append(scale_low_vib)
         else:
             scale.append(scale_high_vib)
@@ -476,7 +479,5 @@ def compute_thermo(elements: list, sym_num: int, T: float, P: float, rotational_
 
     ## Final Energies
     Ezpve, U, H, G = final_thermo_energies(Eelec=energy_elec, ZPVE=ZPVE, Ucorr=corr_U, Hcorr=corr_H, Gcorr=corr_G)
-
-    # print(Ezpve, U, H, G, Cv)
 
     return Ezpve, U, H, G, Cv
